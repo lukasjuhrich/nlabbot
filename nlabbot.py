@@ -11,6 +11,16 @@ def build_client():
     async def on_ready():
         print(f"{client.user} is alive! Also, it speaks of itself in the third person.")
 
+    @client.event
+    async def on_message(message):
+        print(f"Message received! {message.author}")
+
+        if message.author == client.user:
+            return
+
+        if message.content.lower().startswith("!nlab"):
+            await message.channel.send("Hello there!")
+
     return client
 
 
